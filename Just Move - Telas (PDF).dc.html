@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'DM Sans',sans-serif; }
+  doc-page:not(:defined) { visibility:hidden }
+  a { color:#0F766E } a:hover { color:#F97316 }
+</style>
+<script src="./doc-page.js"></script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0F766E"></rect><rect x="26" y="20" width="48" height="60" rx="4" fill="#F0FDFA"></rect><rect x="34" y="32" width="32" height="5" rx="2" fill="#0D9488"></rect><rect x="34" y="43" width="22" height="5" rx="2" fill="#F97316"></rect></svg></template>
+</helmet>
+
+<doc-page size="a4">
+  <section class="page" style="background:linear-gradient(200deg,#0D9488 0%,#0F766E 52%,#134E4A 100%);color:#fff;padding:78px 72px;display:flex;flex-direction:column;box-sizing:border-box">
+    <div style="font-family:'Outfit',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#CCFBF1;font-weight:600">Identidade Vital Motion · exploração visual</div>
+    <div style="font-family:'Outfit',sans-serif;font-size:96px;line-height:.92;font-weight:800;margin-top:26px">Just<br>Move</div>
+    <div style="font-size:22px;line-height:1.5;color:#CCFBF1;margin-top:28px;max-width:520px;text-wrap:pretty">Fisioterapia gamificada com leitura de pose pela câmera. Feedback em tempo real, score, repetições e sequência.</div>
+    <div style="margin-top:56px;display:flex;flex-direction:column;gap:18px;max-width:560px">
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:#F97316;width:26px;flex:none">A</div>
+        <div style="font-size:16px;line-height:1.5;color:#ECFDF5"><strong>Coach Clean</strong> — tipografia herói, um CTA por tela, progresso como frase.</div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:#F97316;width:26px;flex:none">B</div>
+        <div style="font-size:16px;line-height:1.5;color:#ECFDF5"><strong>Play Score</strong> — o placar é a interface: nível, meta semanal, combo e recorde.</div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:#F97316;width:26px;flex:none">C</div>
+        <div style="font-size:16px;line-height:1.5;color:#ECFDF5"><strong>Camera First</strong> — a câmera já está ligada no hub; a sessão não tem moldura.</div>
+      </div>
+    </div>
+    <div style="margin-top:auto;border-top:1px solid rgba(240,253,250,.25);padding-top:22px;display:flex;justify-content:space-between;font-size:14px;color:#CCFBF1">
+      <span>Protótipo navegável · direção B com a sessão de C</span>
+      <span>Modo escuro</span>
+    </div>
+  </section>
+
+  <section class="page" style="background:#F0FDFA;padding:56px 56px 40px;display:flex;flex-direction:column;box-sizing:border-box">
+    <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0D9488;font-weight:600">Fluxo de entrada</div>
+    <div style="font-family:'Outfit',sans-serif;font-size:38px;line-height:1.1;font-weight:700;color:#134E4A;margin-top:12px">Permissão, hub e escolha do movimento</div>
+    <div style="display:flex;gap:26px;margin-top:38px;align-items:flex-start">
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px">
+        <img src="export/png/01-onboarding.png" alt="Tela de onboarding" style="width:100%;border-radius:18px;display:block">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#134E4A">1 · Onboarding</div>
+        <div style="font-size:14px;line-height:1.5;color:#475569;text-wrap:pretty">Marca como herói tipográfico, promessa em uma frase e a razão da permissão de câmera.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px">
+        <img src="export/png/02-hub.png" alt="Hub com placar" style="width:100%;border-radius:18px;display:block">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#134E4A">2 · Hub</div>
+        <div style="font-size:14px;line-height:1.5;color:#475569;text-wrap:pretty">Nível, pontuação total e meta semanal no topo; próxima sessão com um toque para iniciar.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px">
+        <img src="export/png/03-lista-movimentos.png" alt="Lista de movimentos" style="width:100%;border-radius:18px;display:block">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#134E4A">3 · Movimentos</div>
+        <div style="font-size:14px;line-height:1.5;color:#475569;text-wrap:pretty">Os cinco movimentos do MVP com silhueta, dificuldade em três traços e melhor score.</div>
+      </div>
+    </div>
+    <div style="margin-top:38px;display:flex;gap:20px">
+      <div style="flex:1;background:#fff;border-radius:18px;padding:24px 26px">
+        <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0D9488;font-weight:600">Movimentos do MVP</div>
+        <div style="font-size:15px;line-height:1.7;color:#134E4A;margin-top:12px">Abdução de ombro<br>Flexão de ombro<br>Flexão de cotovelo<br>Agachamento<br>Sentar–levantar</div>
+      </div>
+      <div style="flex:1;background:#fff;border-radius:18px;padding:24px 26px">
+        <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0D9488;font-weight:600">Paleta</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-top:14px;font-size:14px;color:#134E4A">
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:18px;height:18px;border-radius:5px;background:#0D9488"></span>Brand teal #0D9488</div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:18px;height:18px;border-radius:5px;background:#F97316"></span>Acento coral #F97316</div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:18px;height:18px;border-radius:5px;background:#0B1F1C"></span>Fundo escuro #0B1F1C</div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:18px;height:18px;border-radius:5px;background:#16A34A"></span>Forma correta #16A34A</div>
+        </div>
+      </div>
+      <div style="flex:1;background:#fff;border-radius:18px;padding:24px 26px">
+        <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0D9488;font-weight:600">Tipografia</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:26px;font-weight:800;color:#134E4A;margin-top:12px;line-height:1.1">Outfit</div>
+        <div style="font-size:14px;color:#64748B;margin-top:4px">Display e marca, 700–800</div>
+        <div style="font-size:19px;color:#134E4A;margin-top:14px">DM Sans</div>
+        <div style="font-size:14px;color:#64748B;margin-top:4px">Corpo e rótulos, 400–700</div>
+      </div>
+    </div>
+    <div style="margin-top:auto;padding-top:26px;border-top:1px solid rgba(19,78,74,.14);font-size:13px;color:#64748B">Just Move · exploração visual · 2 de 3</div>
+  </section>
+
+  <section class="page" style="background:#F0FDFA;padding:56px 56px 40px;display:flex;flex-direction:column;box-sizing:border-box">
+    <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#0D9488;font-weight:600">Sessão e resultado</div>
+    <div style="font-family:'Outfit',sans-serif;font-size:38px;line-height:1.1;font-weight:700;color:#134E4A;margin-top:12px">Preparação, execução ao vivo e fechamento</div>
+    <div style="display:flex;gap:26px;margin-top:38px;align-items:flex-start">
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px">
+        <img src="export/png/04-sessao-preparacao.png" alt="Preparação da sessão" style="width:100%;border-radius:18px;display:block">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#134E4A">4 · Preparação</div>
+        <div style="font-size:14px;line-height:1.5;color:#475569;text-wrap:pretty">Contagem 3·2·1, como executar o movimento e escolha entre estar de frente ou de lado para a câmera.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px">
+        <img src="export/png/05-sessao-ao-vivo.png" alt="Sessão ao vivo" style="width:100%;border-radius:18px;display:block">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#134E4A">5 · Sessão ao vivo</div>
+        <div style="font-size:14px;line-height:1.5;color:#475569;text-wrap:pretty">Câmera edge-to-edge, skeleton colorido por estado, pose alvo tracejada, score grande e instrução de fase.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px">
+        <img src="export/png/06-resultado.png" alt="Resultado da sessão" style="width:100%;border-radius:18px;display:block">
+        <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#134E4A">6 · Resultado</div>
+        <div style="font-size:14px;line-height:1.5;color:#475569;text-wrap:pretty">Score final em faixa coral, reps, forma e sequência, qualidade por repetição e próximo passo.</div>
+      </div>
+    </div>
+    <div style="margin-top:38px;background:#CCFBF1;border-radius:18px;padding:28px 32px">
+      <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0F766E;font-weight:600">Recomendação para o pitch</div>
+      <div style="font-size:16px;line-height:1.6;color:#134E4A;margin-top:12px;text-wrap:pretty">Usar a direção B (Play Score) como principal e a tela de sessão da direção C. B comunica em dois segundos a promessa do produto — aderência por jogo — e a barra de qualidade por repetição mostra que há leitura clínica atrás do placar. A é a mais fácil de defender como marca, mas parece um app de meditação no pitch; C tem a melhor sessão ao vivo, porém um hub sem estrutura deixa a história de progresso sem lugar.</div>
+    </div>
+    <div style="margin-top:auto;padding-top:26px;border-top:1px solid rgba(19,78,74,.14);font-size:13px;color:#64748B">Just Move · exploração visual · 3 de 3</div>
+  </section>
+</doc-page>
+</x-dc>
+</body>
+</html>
