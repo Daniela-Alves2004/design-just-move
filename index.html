@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Just Move — protótipo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#07100E; font-family:'DM Sans',sans-serif; }
+  a { color:#5EEAD4; } a:hover { color:#FB923C; }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0B1F1C"></rect><rect x="38" y="24" width="24" height="52" rx="6" fill="#0D9488"></rect><circle cx="50" cy="40" r="5" fill="#F97316"></circle><rect x="44" y="50" width="12" height="4" rx="2" fill="#F0FDFA"></rect></svg></template>
+
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;gap:56px;padding:48px;flex-wrap:wrap;background:radial-gradient(900px 700px at 50% 0%,#11302A 0%,#07100E 70%)">
+
+  <div style="display:flex;flex-direction:column;gap:18px;max-width:300px">
+    <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#2DD4BF;font-weight:600">Protótipo navegável · dark</div>
+    <div style="font-family:'Outfit',sans-serif;font-size:34px;line-height:1.05;font-weight:800;color:#F0FDFA">Just Move</div>
+    <div style="font-size:15px;line-height:1.6;color:#94A3B8;text-wrap:pretty">Direção B (Play Score) com a sessão edge-to-edge da direção C. Toque na tela para navegar: onboarding, hub, lista de movimentos, sessão ao vivo e resultado. A sessão avança as repetições sozinha.</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+      <div onClick="{{ goOnb }}" style="font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#94A3B8;cursor:pointer;padding:10px 14px;border-radius:12px;background:#0F231F" style-hover="background:#16332C;color:#F0FDFA">Reiniciar no onboarding</div>
+      <div onClick="{{ goHome }}" style="font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#94A3B8;cursor:pointer;padding:10px 14px;border-radius:12px;background:#0F231F" style-hover="background:#16332C;color:#F0FDFA">Ir para o hub</div>
+      <a href="./exploration.dc.html" style="font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#5EEAD4;text-decoration:none;padding:10px 14px;border-radius:12px;border:1px solid #1A3A34">Exploração visual</a>
+      <a href="./screens.dc.html" style="font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#5EEAD4;text-decoration:none;padding:10px 14px;border-radius:12px;border:1px solid #1A3A34">Telas (documento)</a>
+    </div>
+  </div>
+
+  <div id="fone" style="width:408px;height:862px;flex:none;border-radius:44px;border:9px solid #05100D;box-shadow:0 40px 90px rgba(0,0,0,.55);overflow:hidden;position:relative;background:#0B1F1C">
+
+    <!-- ONBOARDING -->
+    <sc-if value="{{ isOnb }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(118deg,#0A1B19 0px,#0A1B19 9px,#0D2422 9px,#0D2422 18px)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.45">
+          <svg width="230" height="360" viewBox="0 0 300 470"><circle cx="150" cy="60" r="26" fill="none" stroke="#0D9488" stroke-width="5"/><line x1="150" y1="86" x2="150" y2="250" stroke="#0D9488" stroke-width="6" stroke-linecap="round"/><line x1="150" y1="118" x2="96" y2="190" stroke="#0D9488" stroke-width="6" stroke-linecap="round"/><line x1="150" y1="118" x2="204" y2="190" stroke="#0D9488" stroke-width="6" stroke-linecap="round"/><line x1="150" y1="250" x2="112" y2="350" stroke="#0D9488" stroke-width="6" stroke-linecap="round"/><line x1="150" y1="250" x2="192" y2="350" stroke="#0D9488" stroke-width="6" stroke-linecap="round"/></svg>
+        </div>
+        <div style="position:absolute;top:16px;left:0;right:0;padding:0 28px;display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#F0FDFA"><span>9:41</span><span style="letter-spacing:.1em">▮▮▮ ▮</span></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:70px 28px 36px;background:linear-gradient(180deg,rgba(8,16,15,0) 0%,rgba(8,16,15,.9) 40%,#08100F 100%);display:flex;flex-direction:column;gap:22px">
+          <div style="font-family:'Outfit',sans-serif;font-size:58px;line-height:.94;font-weight:800;color:#F0FDFA">Just<br>Move</div>
+          <div style="font-size:19px;line-height:1.45;color:#CCFBF1;max-width:300px;text-wrap:pretty">A IA acompanha seu movimento e te guia em tempo real.</div>
+          <div style="font-size:14px;line-height:1.5;color:#94A3B8;text-wrap:pretty">A câmera fica ligada durante a sessão. O vídeo é processado no aparelho e não é enviado.</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div onClick="{{ goHome }}" style="background:#F97316;color:#fff;border-radius:16px;padding:20px;text-align:center;font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;cursor:pointer" style-hover="background:#EA6A0C">Permitir câmera</div>
+            <div onClick="{{ goHome }}" style="text-align:center;font-size:15px;color:#94A3B8;cursor:pointer;padding:6px">Agora não</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- HUB -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;background:#0B1F1C;display:flex;flex-direction:column">
+        <div style="background:linear-gradient(150deg,#134E4A 0%,#0B2B27 100%);padding:16px 26px 28px;color:#F0FDFA">
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700"><span>9:41</span><span style="letter-spacing:.1em">▮▮▮ ▮</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-top:24px">
+            <div>
+              <div style="font-family:'Outfit',sans-serif;font-size:34px;font-weight:800;line-height:1">Just Move</div>
+              <div style="font-size:14px;color:#94A3B8;margin-top:6px">Nível 4 · Constância</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.16em;color:#94A3B8;font-weight:600">TOTAL</div>
+              <div style="font-family:'Outfit',sans-serif;font-size:36px;font-weight:800;line-height:1;color:#FB923C">{{ total }}</div>
+            </div>
+          </div>
+          <div style="margin-top:24px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:#94A3B8;margin-bottom:8px"><span>Meta da semana</span><span style="font-weight:700;color:#F0FDFA">{{ semana }} / 6 sessões</span></div>
+            <div style="height:12px;border-radius:6px;background:rgba(240,253,250,.14);overflow:hidden"><div style="height:100%;background:#FB923C;border-radius:6px;width:{{ semanaPct }}"></div></div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;padding:24px 22px 30px;gap:18px">
+          <div style="background:#14332C;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:14px">
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#94A3B8;font-weight:600">Próxima sessão</div>
+                <div style="font-family:'Outfit',sans-serif;font-size:23px;font-weight:700;color:#F0FDFA;margin-top:6px">{{ movNome }}</div>
+                <div style="font-size:14px;color:#94A3B8;margin-top:4px">{{ movMeta }}</div>
+              </div>
+              <div onClick="{{ startSession }}" style="width:58px;height:58px;flex:none;border-radius:50%;background:#F97316;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer" style-hover="background:#EA6A0C">▶</div>
+            </div>
+            <div style="display:flex;gap:5px">
+              <sc-for list="{{ semanaDots }}" as="d" hint-placeholder-count="6">
+                <span style="flex:1;height:8px;border-radius:4px;background:{{ d.bg }}"></span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-family:'Outfit',sans-serif;font-size:17px;font-weight:700;color:#F0FDFA">Movimentos</div>
+            <div onClick="{{ goList }}" style="font-size:14px;color:#5EEAD4;font-weight:600;cursor:pointer">Ver todos</div>
+          </div>
+          <div style="display:flex;gap:12px;overflow:hidden">
+            <sc-for list="{{ destaques }}" as="m" hint-placeholder-count="3">
+              <div onClick="{{ m.pick }}" style="width:118px;flex:none;background:#14332C;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;cursor:pointer" style-hover="background:#1A4139">
+                <div style="width:26px;height:30px">{{ m.icon }}</div>
+                <div style="font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#F0FDFA;line-height:1.25">{{ m.nome }}</div>
+                <div style="font-size:12px;color:#FB923C;font-weight:700">{{ m.best }} best</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:auto;background:#123F38;border-radius:16px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#5EEAD4">Sequência de {{ streak }} dias</div>
+              <div style="font-size:13px;color:#94A3B8;margin-top:2px">{{ streakNota }}</div>
+            </div>
+            <div style="font-family:'Outfit',sans-serif;font-size:30px;font-weight:800;color:#FB923C">{{ streak }}</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- LISTA -->
+    <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;background:#0B1F1C;display:flex;flex-direction:column">
+        <div style="padding:16px 26px 0;display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#F0FDFA"><span>9:41</span><span style="letter-spacing:.1em">▮▮▮ ▮</span></div>
+        <div style="padding:22px 26px 12px">
+          <div onClick="{{ goHome }}" style="font-size:22px;color:#5EEAD4;cursor:pointer;width:32px">←</div>
+          <div style="font-family:'Outfit',sans-serif;font-size:34px;font-weight:700;color:#F0FDFA;margin-top:14px;line-height:1.1">Movimentos</div>
+          <div style="font-size:15px;color:#94A3B8;margin-top:8px">Escolha um para treinar agora.</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:12px 20px 28px">
+          <sc-for list="{{ movimentos }}" as="m" hint-placeholder-count="5">
+            <div onClick="{{ m.pick }}" style="background:#14332C;border-radius:16px;padding:16px;display:flex;gap:16px;align-items:center;cursor:pointer" style-hover="background:#1A4139">
+              <div style="width:56px;height:56px;flex:none;border-radius:14px;background:#0F2A26;display:flex;align-items:center;justify-content:center">{{ m.icon }}</div>
+              <div style="flex:1">
+                <div style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:600;color:#F0FDFA">{{ m.nome }}</div>
+                <div style="display:flex;gap:4px;margin-top:8px">
+                  <sc-for list="{{ m.dots }}" as="d" hint-placeholder-count="3">
+                    <span style="width:16px;height:4px;border-radius:2px;background:{{ d.bg }}"></span>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#FB923C">{{ m.best }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- SESSÃO -->
+    <sc-if value="{{ isSession }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(118deg,#0A1B19 0px,#0A1B19 9px,#0D2422 9px,#0D2422 18px)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">{{ skeleton }}</div>
+        <div style="position:absolute;left:26px;bottom:214px;font-family:monospace;font-size:11px;letter-spacing:.14em;color:rgba(240,253,250,.35)">CAMERA PREVIEW</div>
+        <sc-if value="{{ emAcao }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;top:64px;left:20px;right:20px;display:flex;flex-direction:column;align-items:center;gap:8px">
+            <div style="background:rgba(8,16,15,.72);border-radius:16px;padding:14px 20px;display:flex;align-items:center;gap:14px">
+              <div style="font-family:'Outfit',sans-serif;font-size:30px;font-weight:800;line-height:1;color:{{ estadoCor }}">{{ faseSeta }}</div>
+              <div>
+                <div style="font-family:'Outfit',sans-serif;font-size:22px;font-weight:700;color:#F0FDFA;line-height:1.15">{{ faseTxt }}</div>
+                <div style="font-size:13px;color:#94A3B8;margin-top:3px">{{ movLabel }} · alvo: {{ alvoTxt }}</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;background:rgba(8,16,15,.72);border-radius:999px;padding:5px 6px 5px 14px">
+              <span style="font-size:13px;color:#94A3B8">{{ vistaTxt }}</span>
+              <span onClick="{{ setFrente }}" style="cursor:pointer;border-radius:999px;padding:6px 12px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;background:{{ frenteBg }};color:{{ frenteCor }}">Frente</span>
+              <span onClick="{{ setLado }}" style="cursor:pointer;border-radius:999px;padding:6px 12px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;background:{{ ladoBg }};color:{{ ladoCor }}">Lado</span>
+            </div>
+            <sc-if value="{{ vistaIdeal }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:13px;color:#5EEAD4;background:rgba(8,16,15,.7);border-radius:999px;padding:6px 14px">{{ vistaAviso }}</div>
+            </sc-if>
+            <sc-if value="{{ vistaNaoIdeal }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:13px;color:#FBBF24;background:rgba(8,16,15,.78);border-radius:999px;padding:6px 14px;text-align:center">{{ vistaAviso }}</div>
+            </sc-if>
+          </div>
+        </sc-if>
+        <div style="position:absolute;left:0;right:0;top:0;height:6px;background:rgba(240,253,250,.14)"><div style="height:100%;background:{{ estadoCor }};width:{{ repsPct }}"></div></div>
+        <div style="position:absolute;top:18px;left:0;right:0;padding:0 24px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#5EEAD4">{{ reps }}<span style="color:rgba(240,253,250,.4)"> / 12</span></div>
+          <div style="display:flex;gap:8px">
+            <div onClick="{{ togglePause }}" style="width:36px;height:36px;border-radius:12px;background:rgba(240,253,250,.14);display:flex;align-items:center;justify-content:center;color:#F0FDFA;font-size:12px;cursor:pointer">{{ pauseIcon }}</div>
+            <div onClick="{{ goHome }}" style="width:36px;height:36px;border-radius:12px;background:rgba(240,253,250,.14);display:flex;align-items:center;justify-content:center;color:#F0FDFA;font-size:14px;cursor:pointer">✕</div>
+          </div>
+        </div>
+        <sc-if value="{{ emPrep }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:rgba(7,16,14,.86);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;padding:40px 34px;text-align:center">
+            <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#2DD4BF;font-weight:600">Prepare-se</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:120px;line-height:.85;font-weight:800;color:#F0FDFA">{{ prepNum }}</div>
+            <div style="font-family:'Outfit',sans-serif;font-size:28px;font-weight:700;color:#F0FDFA;line-height:1.2">{{ movLabel }}</div>
+            <div style="font-size:17px;line-height:1.5;color:#CCFBF1;max-width:300px;text-wrap:pretty">{{ dica }}</div>
+            <div style="display:flex;align-items:center;gap:10px;background:#123F38;border-radius:14px;padding:12px 18px">
+              <span style="width:22px;height:0;border-top:2px dashed rgba(240,253,250,.6)"></span>
+              <span style="font-size:14px;color:#94A3B8">A linha tracejada mostra a pose alvo</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+              <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#94A3B8;font-weight:600">Como você está na câmera</div>
+              <div style="display:flex;gap:8px">
+                <div onClick="{{ setFrente }}" style="cursor:pointer;border-radius:14px;padding:12px 18px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;background:{{ frenteBg }};color:{{ frenteCor }}">De frente</div>
+                <div onClick="{{ setLado }}" style="cursor:pointer;border-radius:14px;padding:12px 18px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;background:{{ ladoBg }};color:{{ ladoCor }}">De lado</div>
+              </div>
+              <div style="font-size:14px;color:#5EEAD4">{{ vistaRecomendada }}</div>
+            </div>
+            <div style="font-size:15px;color:#94A3B8">Afaste-se 2 m e mantenha o corpo inteiro no quadro</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ temCombo }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:172px;left:0;right:0;display:flex;justify-content:center">
+            <div style="background:#F97316;color:#fff;border-radius:999px;padding:7px 18px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700">COMBO ×{{ combo }}</div>
+          </div>
+        </sc-if>
+        <div style="position:absolute;left:24px;right:24px;bottom:34px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px">
+          <div style="font-family:'Outfit',sans-serif;font-size:104px;line-height:.82;font-weight:800;color:#F0FDFA">{{ score }}</div>
+          <div style="text-align:right;padding-bottom:14px">
+            <div style="font-family:'Outfit',sans-serif;font-size:26px;font-weight:700;line-height:1.15;color:{{ estadoCor }}">{{ feedback }}</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- RESULTADO -->
+    <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;background:#0B1F1C;display:flex;flex-direction:column">
+        <div style="background:linear-gradient(160deg,#C2560B 0%,#8A3B06 100%);padding:16px 26px 34px;color:#fff">
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700"><span>9:41</span><span style="letter-spacing:.1em">▮▮▮ ▮</span></div>
+          <div style="margin-top:30px;font-family:'Outfit',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#FFEDD5">{{ resultTitulo }}</div>
+          <div style="font-family:'Outfit',sans-serif;font-size:92px;line-height:.9;font-weight:800;margin-top:10px">{{ score }}</div>
+          <div style="font-size:17px;color:#FFEDD5;margin-top:6px">{{ resultNota }}</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;padding:24px 22px 30px;gap:16px">
+          <div style="display:flex;gap:12px">
+            <div style="flex:1;background:#14332C;border-radius:16px;padding:16px"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#94A3B8;font-weight:600;font-family:'Outfit',sans-serif">Reps</div><div style="font-family:'Outfit',sans-serif;font-size:30px;font-weight:800;color:#F0FDFA;margin-top:4px">{{ reps }}</div></div>
+            <div style="flex:1;background:#14332C;border-radius:16px;padding:16px"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#94A3B8;font-weight:600;font-family:'Outfit',sans-serif">Forma</div><div style="font-family:'Outfit',sans-serif;font-size:30px;font-weight:800;color:#4ADE80;margin-top:4px">{{ forma }}</div></div>
+            <div style="flex:1;background:#14332C;border-radius:16px;padding:16px"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#94A3B8;font-weight:600;font-family:'Outfit',sans-serif">Streak</div><div style="font-family:'Outfit',sans-serif;font-size:30px;font-weight:800;color:#FB923C;margin-top:4px">{{ streak }}</div></div>
+          </div>
+          <div style="background:#14332C;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px">
+            <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:#F0FDFA">Qualidade por repetição</div>
+            <div style="display:flex;align-items:flex-end;gap:6px;height:78px">
+              <sc-for list="{{ barras }}" as="b" hint-placeholder-count="12">
+                <span style="flex:1;border-radius:4px;height:{{ b.h }};background:{{ b.bg }}"></span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px">
+            <div onClick="{{ nextMove }}" style="background:#0D9488;color:#042F2A;border-radius:16px;padding:19px;text-align:center;font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;cursor:pointer" style-hover="background:#14B8A6">Próximo movimento</div>
+            <div style="display:flex;gap:12px">
+              <div onClick="{{ startSession }}" style="flex:1;border:1.5px solid rgba(45,212,191,.45);color:#5EEAD4;border-radius:16px;padding:17px;text-align:center;font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;cursor:pointer" style-hover="background:#123F38">Repetir</div>
+              <div onClick="{{ goHome }}" style="flex:1;color:#94A3B8;border-radius:16px;padding:17px;text-align:center;font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;cursor:pointer" style-hover="color:#F0FDFA">Voltar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:960}}">
+const MOVS = [
+  { nome: 'Abdução de ombro', best: 940, dif: 1, meta: '12 reps · meta 900 pts', icon: 'abd',
+    dica: 'Braços esticados ao lado do corpo. Abra para os lados até acima da cabeça.',
+    fases: ['Abra os braços', 'Desça devagar'], alvoTxt: 'Mãos acima da cabeça', vista: 'frente' },
+  { nome: 'Flexão de ombro', best: 780, dif: 2, meta: '12 reps · meta 800 pts', icon: 'flx',
+    dica: 'Braços à frente do corpo. Suba pela frente até acima da cabeça.',
+    fases: ['Suba pela frente', 'Desça devagar'], alvoTxt: 'Braços acima da cabeça', vista: 'lado' },
+  { nome: 'Flexão de cotovelo', best: 690, dif: 1, meta: '14 reps · meta 700 pts', icon: 'cot',
+    dica: 'Cotovelos junto ao tronco. Dobre só o antebraço até a altura do ombro.',
+    fases: ['Dobre o cotovelo', 'Estenda devagar'], alvoTxt: 'Mãos na altura do ombro', vista: 'lado' },
+  { nome: 'Agachamento', best: 1120, dif: 3, meta: '10 reps · meta 1.100 pts', icon: 'aga',
+    dica: 'Pés na largura dos ombros. Desça o quadril mantendo as costas retas.',
+    fases: ['Desça o quadril', 'Suba devagar'], alvoTxt: 'Coxas paralelas ao chão', vista: 'lado' },
+  { nome: 'Sentar–levantar', best: 860, dif: 2, meta: '10 reps · meta 900 pts', icon: 'sit',
+    dica: 'Sentada na borda da cadeira. Levante sem usar as mãos.',
+    fases: ['Levante', 'Sente devagar'], alvoTxt: 'De pé, joelhos esticados', vista: 'lado' }
+];
+
+const ESTADOS = {
+  ok:    { cor: '#4ADE80', frases: ['Ótimo!', 'Perfeito', 'Isso mesmo'] },
+  quase: { cor: '#FBBF24', frases: ['Braço mais alto', 'Quase lá', 'Mais devagar'] },
+  ruim:  { cor: '#F87171', frases: ['Ombro caindo', 'Endireite as costas'] }
+};
+
+const BAR_QUAL = [54, 72, 88, 62, 94, 100, 84, 46, 78, 90, 96, 86];
+
+class Component extends DCLogic {
+  state = { tela: 'onb', movIdx: 0, reps: 0, score: 0, combo: 0, estado: 'ok', frase: 'Ótimo!', pausado: false, streak: 4, semana: 4, total: 8420, recorde: false, prep: 0 };
+
+  componentWillUnmount() { clearInterval(this._t); }
+
+  _tick = () => {
+    if (this.state.pausado) return;
+    if (this.state.prep > 0) { this.setState(s => ({ prep: s.prep - 1 })); return; }
+    this.setState(s => {
+      if (s.reps >= 12) { clearInterval(this._t); return this._finish(s); }
+      const r = Math.random();
+      const estado = r < 0.62 ? 'ok' : r < 0.87 ? 'quase' : 'ruim';
+      const frases = ESTADOS[estado].frases;
+      const ganho = estado === 'ok' ? 82 : estado === 'quase' ? 48 : 18;
+      const combo = estado === 'ok' ? s.combo + 1 : 0;
+      return {
+        reps: s.reps + 1,
+        score: s.score + ganho + combo * 6,
+        combo, estado,
+        frase: frases[Math.floor(Math.random() * frases.length)]
+      };
+    });
+  };
+
+  _finish(s) {
+    const best = MOVS[s.movIdx].best;
+    return { tela: 'result', recorde: s.score > best, streak: 5, semana: Math.min(6, s.semana + 1), total: s.total + s.score };
+  }
+
+  _start = () => {
+    clearInterval(this._t);
+    this.setState(s => ({ tela: 'session', reps: 0, score: 0, combo: 0, estado: 'ok', frase: 'Vamos lá', pausado: false, recorde: false, prep: 3, vista: MOVS[s.movIdx].vista }));
+    this._t = setInterval(this._tick, 1100);
+  };
+
+// Poses por movimento: fase 0 = posição inicial, fase 1 = fim da amplitude.
+// head, ombro, quadril, cotovelos (e/d), mãos (e/d), joelhos, pés.
+_poses(kind, fase, vista) {
+  if (vista === 'lado') return this._posesLado(kind, fase);
+  const base = { head: [150, 60], sh: [150, 112], hip: [150, 250], kneeL: [110, 350], kneeR: [194, 350], footL: [114, 450], footR: [190, 450] };
+  const P = {
+    abd: [
+      { ...base, elbL: [104, 152], elbR: [196, 152], handL: [96, 200], handR: [204, 200], braco: 'sup' },
+      { ...base, elbL: [58, 76], elbR: [242, 76], handL: [26, 20], handR: [274, 20], braco: 'sup' }
+    ],
+    flx: [
+      { ...base, elbL: [112, 158], elbR: [188, 158], handL: [108, 206], handR: [192, 206], braco: 'sup' },
+      { ...base, elbL: [116, 30], elbR: [184, 30], handL: [120, -34], handR: [180, -34], braco: 'sup' }
+    ],
+    cot: [
+      { ...base, elbL: [108, 170], elbR: [192, 170], handL: [102, 224], handR: [198, 224], braco: 'ante' },
+      { ...base, elbL: [108, 170], elbR: [192, 170], handL: [132, 112], handR: [168, 112], braco: 'ante' }
+    ],
+    aga: [
+      { ...base, elbL: [112, 168], elbR: [188, 168], handL: [110, 220], handR: [190, 220] },
+      { head: [150, 116], sh: [150, 168], hip: [150, 292], kneeL: [92, 342], kneeR: [208, 342], footL: [112, 450], footR: [188, 450], elbL: [116, 214], elbR: [184, 214], handL: [126, 258], handR: [174, 258], perna: 'sup' }
+    ],
+    sit: [
+      { head: [150, 150], sh: [150, 200], hip: [150, 318], kneeL: [92, 350], kneeR: [208, 350], footL: [96, 450], footR: [204, 450], elbL: [116, 250], elbR: [184, 250], handL: [124, 300], handR: [176, 300], perna: 'sup' },
+      { ...base, elbL: [112, 168], elbR: [188, 168], handL: [110, 220], handR: [190, 220] }
+    ]
+  };
+  return this._mix(P[kind] || P.abd, fase);
+}
+
+// Perfil, rosto voltado para a direita: membros do lado próximo à câmera ficam à frente.
+_posesLado(kind, fase) {
+  const base = { head: [140, 60], sh: [146, 112], hip: [150, 250], kneeL: [156, 350], kneeR: [146, 350], footL: [164, 450], footR: [152, 450] };
+  const bracoBaixo = { elbL: [154, 158], elbR: [146, 158], handL: [158, 206], handR: [150, 206] };
+  const P = {
+    abd: [
+      { ...base, ...bracoBaixo, braco: 'sup' },
+      { ...base, elbL: [176, 118], elbR: [166, 126], handL: [200, 88], handR: [190, 98], braco: 'sup' }
+    ],
+    flx: [
+      { ...base, ...bracoBaixo, braco: 'sup' },
+      { ...base, elbL: [172, 42], elbR: [162, 50], handL: [180, -26], handR: [170, -18], braco: 'sup' }
+    ],
+    cot: [
+      { ...base, ...bracoBaixo, braco: 'ante' },
+      { ...base, elbL: [154, 158], elbR: [146, 158], handL: [196, 122], handR: [188, 130], braco: 'ante' }
+    ],
+    aga: [
+      { ...base, ...bracoBaixo },
+      { head: [124, 118], sh: [130, 170], hip: [104, 294], kneeL: [172, 344], kneeR: [162, 344], footL: [162, 450], footR: [150, 450],
+        elbL: [162, 216], elbR: [152, 222], handL: [196, 196], handR: [186, 204], perna: 'sup' }
+    ],
+    sit: [
+      { head: [118, 152], sh: [124, 202], hip: [98, 320], kneeL: [174, 352], kneeR: [164, 352], footL: [180, 450], footR: [168, 450],
+        elbL: [156, 248], elbR: [146, 254], handL: [190, 236], handR: [180, 244], perna: 'sup' },
+      { ...base, ...bracoBaixo, perna: 'sup' }
+    ]
+  };
+  return this._mix(P[kind] || P.abd, fase);
+}
+
+_mix(set, fase) {
+  const a = set[0], b = set[1];
+  const k = fase ? 1 : 0;
+  const mix = (p, q) => [p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k];
+  const out = {};
+  ['head', 'sh', 'hip', 'kneeL', 'kneeR', 'footL', 'footR', 'elbL', 'elbR', 'handL', 'handR'].forEach(j => { out[j] = mix(a[j], b[j]); });
+  out.alvo = b.perna ? 'perna' : 'braco';
+  return out;
+}
+
+_skeleton(kind, estado, fase, vista) {
+  const c = ESTADOS[estado].cor;
+  const neutro = '#0D9488';
+  const p = this._poses(kind, fase, vista);
+  const focoPerna = p.alvo === 'perna';
+  const cBraco = focoPerna ? neutro : c;
+  const cPerna = focoPerna ? c : neutro;
+  const L = (id, from, to, col) => React.createElement('line', { key: id, x1: from[0], y1: from[1], x2: to[0], y2: to[1], stroke: col, strokeWidth: 7, strokeLinecap: 'round' });
+  const J = (id, at, col) => React.createElement('circle', { key: id, cx: at[0], cy: at[1], r: 10, fill: col });
+  const cadeira = kind !== 'sit' ? null
+    : vista === 'lado'
+      ? React.createElement('g', { key: 'ch' }, [
+          React.createElement('rect', { key: 'a', x: 74, y: 330, width: 84, height: 12, rx: 5, fill: 'rgba(240,253,250,.22)' }),
+          React.createElement('rect', { key: 'b', x: 74, y: 232, width: 12, height: 104, rx: 5, fill: 'rgba(240,253,250,.16)' })
+        ])
+      : React.createElement('rect', { key: 'ch', x: 128, y: 336, width: 96, height: 12, rx: 5, fill: 'rgba(240,253,250,.22)' });
+  const g = this._poses(kind, !fase, vista);
+  const mesmo = (a2, b2) => Math.abs(a2[0] - b2[0]) < 2 && Math.abs(a2[1] - b2[1]) < 2;
+  // só desenha a pose alvo nos segmentos que precisam se mover
+  const GL = (id, gf, gt, lf, lt) => (mesmo(gf, lf) && mesmo(gt, lt)) ? null
+    : React.createElement('line', { key: 'g' + id, x1: gf[0], y1: gf[1], x2: gt[0], y2: gt[1], stroke: 'rgba(240,253,250,.34)', strokeWidth: 6, strokeLinecap: 'round', strokeDasharray: '9 9' });
+  const ghost = React.createElement('g', { key: 'ghost' }, [
+    mesmo(g.head, p.head) ? null : React.createElement('circle', { key: 'gh', cx: g.head[0], cy: g.head[1], r: 26, fill: 'none', stroke: 'rgba(240,253,250,.34)', strokeWidth: 5, strokeDasharray: '9 9' }),
+    GL('sp', g.sh, g.hip, p.sh, p.hip),
+    GL('ual', g.sh, g.elbL, p.sh, p.elbL), GL('fal', g.elbL, g.handL, p.elbL, p.handL),
+    GL('uar', g.sh, g.elbR, p.sh, p.elbR), GL('far', g.elbR, g.handR, p.elbR, p.handR),
+    GL('thl', g.hip, g.kneeL, p.hip, p.kneeL), GL('shl', g.kneeL, g.footL, p.kneeL, p.footL),
+    GL('thr', g.hip, g.kneeR, p.hip, p.kneeR), GL('shr', g.kneeR, g.footR, p.kneeR, p.footR)
+  ]);
+  return React.createElement('svg', { width: 330, height: 546, viewBox: '0 -70 300 540' }, [
+    cadeira,
+    ghost,
+    React.createElement('circle', { key: 'head', cx: p.head[0], cy: p.head[1], r: 26, fill: 'none', stroke: c, strokeWidth: 6 }),
+    L('spine', p.sh, p.hip, focoPerna ? c : c),
+    L('uaL', p.sh, p.elbL, cBraco), L('faL', p.elbL, p.handL, cBraco),
+    L('uaR', p.sh, p.elbR, cBraco), L('faR', p.elbR, p.handR, cBraco),
+    L('thL', p.hip, p.kneeL, cPerna), L('shL', p.kneeL, p.footL, cPerna),
+    L('thR', p.hip, p.kneeR, cPerna), L('shR', p.kneeR, p.footR, cPerna),
+    J('jElbL', p.elbL, cBraco), J('jElbR', p.elbR, cBraco),
+    J('jHip', p.hip, focoPerna ? c : neutro),
+    J('jKnL', p.kneeL, cPerna), J('jKnR', p.kneeR, cPerna)
+  ]);
+}
+
+  _icon(kind, col) {
+    const C = col || '#2DD4BF';
+    const L = (x1, y1, x2, y2, c2) => React.createElement('line', { key: x1 + '' + y1 + '' + x2 + '' + y2, x1, y1, x2, y2, stroke: c2 || C, strokeWidth: 2.5, strokeLinecap: 'round' });
+    const head = (cx, cy) => React.createElement('circle', { key: 'hd', cx, cy, r: 4, fill: C });
+    const sets = {
+      abd: [head(15, 6), L(15, 10, 15, 22), L(15, 13, 3, 9), L(15, 13, 27, 9), L(15, 22, 9, 32), L(15, 22, 21, 32)],
+      flx: [head(15, 6), L(15, 10, 15, 22), L(15, 13, 8, 3), L(15, 13, 24, 17), L(15, 22, 9, 32), L(15, 22, 21, 32)],
+      cot: [head(15, 6), L(15, 10, 15, 22), L(15, 13, 6, 16), L(6, 16, 11, 7, '#FB923C'), L(15, 22, 9, 32), L(15, 22, 21, 32)],
+      aga: [head(15, 6), L(15, 10, 15, 19), L(15, 12, 26, 12), L(15, 19, 8, 24), L(8, 24, 11, 32), L(15, 19, 22, 24), L(22, 24, 21, 32)],
+      sit: [head(13, 7), L(13, 11, 13, 20), L(13, 20, 23, 20), L(23, 20, 23, 31), L(13, 14, 22, 14, '#FB923C'), L(6, 31, 6, 20, '#1F4B44')]
+    };
+    return React.createElement('svg', { width: 30, height: 34, viewBox: '0 0 30 34' }, sets[kind]);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const mov = MOVS[s.movIdx];
+    const vista = s.vista || mov.vista;
+    const dot = on => ({ bg: on ? '#2DD4BF' : '#1F4B44' });
+
+    return {
+      isOnb: s.tela === 'onb', isHome: s.tela === 'home', isList: s.tela === 'list',
+      isSession: s.tela === 'session', isResult: s.tela === 'result',
+
+      goOnb: () => { clearInterval(this._t); this.setState({ tela: 'onb' }); },
+      goHome: () => { clearInterval(this._t); this.setState({ tela: 'home' }); },
+      goList: () => this.setState({ tela: 'list' }),
+      startSession: this._start,
+      nextMove: () => { this.setState(st => ({ movIdx: (st.movIdx + 1) % MOVS.length })); this._start(); },
+      togglePause: () => this.setState(st => ({ pausado: !st.pausado })),
+      pauseIcon: s.pausado ? '▶' : '❙❙',
+
+      movNome: mov.nome, movMeta: mov.meta,
+      total: s.total.toLocaleString('pt-BR'),
+      semana: s.semana, semanaPct: Math.round(s.semana / 6 * 100) + '%',
+      semanaDots: [0, 1, 2, 3, 4, 5].map(i => dot(i < s.semana)),
+      streak: s.streak,
+      streakNota: s.streak >= 5 ? 'Melhor sequência até agora' : 'Mais ' + (6 - s.streak) + ' para o recorde',
+
+      destaques: [0, 1, 3].map(i => ({
+        nome: MOVS[i].nome, best: MOVS[i].best.toLocaleString('pt-BR'),
+        icon: this._icon(MOVS[i].icon),
+        pick: () => { this.setState({ movIdx: i }); this._start(); }
+      })),
+      movimentos: MOVS.map((m, i) => ({
+        nome: m.nome, best: m.best.toLocaleString('pt-BR'),
+        icon: this._icon(m.icon),
+        dots: [0, 1, 2].map(k => ({ bg: k < m.dif ? '#2DD4BF' : '#1F4B44' })),
+        pick: () => { this.setState({ movIdx: i }); this._start(); }
+      })),
+
+      reps: s.reps, score: s.score.toLocaleString('pt-BR'),
+      repsPct: Math.round(s.reps / 12 * 100) + '%',
+      estadoCor: ESTADOS[s.estado].cor,
+      feedback: s.pausado ? 'Pausado' : s.frase,
+      combo: s.combo, temCombo: s.combo >= 3,
+      skeleton: this._skeleton(mov.icon, s.prep > 0 ? 'quase' : s.estado, s.prep > 0 ? false : s.reps % 2 === 1, vista),
+      vistaFrente: vista === 'frente',
+      vistaLado: vista === 'lado',
+      setFrente: () => this.setState({ vista: 'frente' }),
+      setLado: () => this.setState({ vista: 'lado' }),
+      vistaTxt: vista === 'lado' ? 'De lado para a câmera' : 'De frente para a câmera',
+      vistaIdeal: vista === mov.vista,
+      vistaNaoIdeal: vista !== mov.vista,
+      vistaAviso: vista === mov.vista
+        ? 'Posição recomendada para este movimento'
+        : (mov.vista === 'lado'
+            ? 'Este movimento é lido melhor de lado — vire o corpo 90°'
+            : 'Este movimento é lido melhor de frente — fique de frente para a câmera'),
+      vistaRecomendada: mov.vista === 'lado' ? 'Recomendado: de lado' : 'Recomendado: de frente',
+      frenteBg: vista === 'frente' ? '#0D9488' : 'rgba(240,253,250,.1)',
+      frenteCor: vista === 'frente' ? '#042F2A' : '#94A3B8',
+      ladoBg: vista === 'lado' ? '#0D9488' : 'rgba(240,253,250,.1)',
+      ladoCor: vista === 'lado' ? '#042F2A' : '#94A3B8',
+      movLabel: mov.nome,
+      emPrep: s.prep > 0,
+      emAcao: s.prep === 0,
+      prepNum: s.prep,
+      dica: mov.dica,
+      alvoTxt: mov.alvoTxt,
+      faseTxt: s.reps % 2 === 1 ? mov.fases[1] : mov.fases[0],
+      faseSeta: s.reps % 2 === 1 ? '↓' : '↑',
+
+      forma: Math.round(60 + s.score / 32) + '%',
+      resultTitulo: s.recorde ? 'Novo recorde' : 'Sessão concluída',
+      resultNota: s.recorde ? '+' + (s.score - mov.best) + ' acima do seu melhor' : mov.nome + ' · 12 de 12 repetições',
+      barras: BAR_QUAL.map(h => ({ h: h + '%', bg: h >= 70 ? '#16A34A' : h >= 55 ? '#F59E0B' : '#DC2626' }))
+    };
+  }
+}
+</script>
+</body>
+</html>
