@@ -22,6 +22,32 @@
   }
 </style>
 <script src="./support.js"></script>
+<script>
+  // ponytail: measure available space and scale the fixed 408×862 phone so it never clips or scrolls
+  function fitPhone() {
+    const stage = document.querySelector('.stage');
+    const fone = document.querySelector('#fone');
+    const shell = document.querySelector('.shell');
+    const bar = document.querySelector('.bar');
+    if (!stage || !fone || !shell) return;
+    const cs = getComputedStyle(shell);
+    const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+    const padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    const gap = parseFloat(cs.rowGap || cs.gap) || 0;
+    const availW = shell.clientWidth - padX;
+    const availH = shell.clientHeight - padY - (bar ? bar.offsetHeight : 0) - gap;
+    const s = Math.max(0.2, Math.min(1, availW / 408, availH / 862));
+    stage.style.width = (408 * s) + 'px';
+    stage.style.height = (862 * s) + 'px';
+    fone.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fitPhone);
+  window.addEventListener('orientationchange', fitPhone);
+  const _fitWatch = setInterval(function () {
+    if (document.querySelector('#fone')) { fitPhone(); clearInterval(_fitWatch); }
+  }, 40);
+  setTimeout(function () { clearInterval(_fitWatch); fitPhone(); }, 4000);
+</script>
 </head>
 <body>
 <x-dc>
@@ -73,18 +99,16 @@
     white-space: nowrap;
   }
   .stage {
-    container-type: inline-size;
     flex: none;
-    width: min(408px, calc(100vw - 24px), calc((100dvh - 64px) * 408 / 862));
-    aspect-ratio: 408 / 862;
-    max-height: calc(100dvh - 64px);
     overflow: hidden;
+    width: 408px;
+    height: 862px;
   }
   #fone {
     width: 408px;
     height: 862px;
+    box-sizing: border-box;
     transform-origin: top left;
-    transform: scale(calc(100cqw / 408px));
     border-radius: 44px;
     border: 9px solid #05100D;
     box-shadow: 0 24px 60px rgba(0,0,0,.55);
