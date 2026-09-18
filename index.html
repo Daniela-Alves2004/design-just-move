@@ -13,16 +13,51 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <style>
-  body { margin:0; background:#07100E; font-family:'DM Sans',sans-serif; }
+  html, body { margin:0; height:100%; overflow:hidden; background:#07100E; font-family:'DM Sans',sans-serif; }
   a { color:#5EEAD4; } a:hover { color:#FB923C; }
+  .shell {
+    box-sizing:border-box;
+    width:100vw;
+    height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:radial-gradient(900px 700px at 50% 0%,#11302A 0%,#07100E 70%);
+  }
+  .fit {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+    padding:16px;
+    transform:scale(min(1, 100vw / 820px, 100dvh / 900px));
+    transform-origin:center center;
+  }
+  .side { display:flex; flex-direction:column; gap:18px; width:280px; flex:none; }
+  #fone {
+    width:408px; height:862px; flex:none;
+    border-radius:44px; border:9px solid #05100D;
+    box-shadow:0 40px 90px rgba(0,0,0,.55);
+    overflow:hidden; position:relative; background:#0B1F1C;
+  }
+  @media (max-width:720px) {
+    .fit {
+      flex-direction:column;
+      gap:16px;
+      transform:scale(min(1, 100vw / 440px, 100dvh / 1040px));
+    }
+    .side { width:min(280px, 70vw); }
+  }
 </style>
 </helmet>
 
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0B1F1C"></rect><rect x="38" y="24" width="24" height="52" rx="6" fill="#0D9488"></rect><circle cx="50" cy="40" r="5" fill="#F97316"></circle><rect x="44" y="50" width="12" height="4" rx="2" fill="#F0FDFA"></rect></svg></template>
 
-<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;gap:56px;padding:48px;flex-wrap:wrap;background:radial-gradient(900px 700px at 50% 0%,#11302A 0%,#07100E 70%)">
+<div class="shell">
+<div class="fit">
 
-  <div style="display:flex;flex-direction:column;gap:18px;max-width:300px">
+  <div class="side">
     <div style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#2DD4BF;font-weight:600">Protótipo navegável · dark</div>
     <div style="font-family:'Outfit',sans-serif;font-size:34px;line-height:1.05;font-weight:800;color:#F0FDFA">Just Move</div>
     <div style="font-size:15px;line-height:1.6;color:#94A3B8;text-wrap:pretty">Direção B (Play Score) com a sessão edge-to-edge da direção C. Toque na tela para navegar: onboarding, hub, lista de movimentos, sessão ao vivo e resultado. A sessão avança as repetições sozinha.</div>
@@ -32,7 +67,7 @@
     </div>
   </div>
 
-  <div id="fone" style="width:408px;height:862px;flex:none;border-radius:44px;border:9px solid #05100D;box-shadow:0 40px 90px rgba(0,0,0,.55);overflow:hidden;position:relative;background:#0B1F1C">
+  <div id="fone">
 
     <!-- ONBOARDING -->
     <sc-if value="{{ isOnb }}" hint-placeholder-val="{{ true }}">
@@ -245,6 +280,7 @@
       </div>
     </sc-if>
   </div>
+</div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:960}}">
